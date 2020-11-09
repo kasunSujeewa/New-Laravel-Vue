@@ -39,6 +39,7 @@
                 class="dropdown-item"
                 data-toggle="modal"
                 data-target="#Delete_post"
+                @click="removeIt(post)"
               >
                 Delete
               </button>
@@ -67,83 +68,7 @@
         <p class="lead">{{ post.description }}</p>
 
         <hr />
-
-        <!-- Comments Form -->
-        <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <img
-            class="d-flex mr-3 rounded-circle"
-            src="http://placehold.it/50x50"
-            alt=""
-          />
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-            vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </div>
-
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img
-            class="d-flex mr-3 rounded-circle"
-            src="http://placehold.it/50x50"
-            alt=""
-          />
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-            vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-            <div class="media mt-4">
-              <img
-                class="d-flex mr-3 rounded-circle"
-                src="http://placehold.it/50x50"
-                alt=""
-              />
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                nisi vulputate fringilla. Donec lacinia congue felis in
-                faucibus.
-              </div>
-            </div>
-
-            <div class="media mt-4">
-              <img
-                class="d-flex mr-3 rounded-circle"
-                src="http://placehold.it/50x50"
-                alt=""
-              />
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                nisi vulputate fringilla. Donec lacinia congue felis in
-                faucibus.
-              </div>
-            </div>
-          </div>
-        </div>
+        <comment :post="post" :admin="user"></comment>
       </div>
 
       <div v-else>
@@ -183,6 +108,7 @@
                 class="dropdown-item"
                 data-toggle="modal"
                 data-target="#Delete_post"
+                @click="removeIt(post)"
               >
                 Delete
               </button>
@@ -205,172 +131,91 @@
 
         <hr />
 
-        <!-- Comments Form -->
-        <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
-
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <img
-            class="d-flex mr-3 rounded-circle"
-            src="http://placehold.it/50x50"
-            alt=""
-          />
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-            vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </div>
-
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img
-            class="d-flex mr-3 rounded-circle"
-            src="http://placehold.it/50x50"
-            alt=""
-          />
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-            vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-            <div class="media mt-4">
-              <img
-                class="d-flex mr-3 rounded-circle"
-                src="http://placehold.it/50x50"
-                alt=""
-              />
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                nisi vulputate fringilla. Donec lacinia congue felis in
-                faucibus.
-              </div>
-            </div>
-
-            <div class="media mt-4">
-              <img
-                class="d-flex mr-3 rounded-circle"
-                src="http://placehold.it/50x50"
-                alt=""
-              />
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-                vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                nisi vulputate fringilla. Donec lacinia congue felis in
-                faucibus.
-              </div>
-            </div>
-          </div>
-        </div>
+        <comment :post="post" :admin="user"></comment>
       </div>
-      <div
-        class="modal fade"
-        id="Edit_post"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLongTitle"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">
-                Add Your Post
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
+    </div>
+    <div
+      class="modal fade"
+      id="Edit_post"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Add Your Post
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Post Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                name="postName"
+                v-model="updatingData.postName"
+                required
+              />
             </div>
-            <div class="modal-body">
-              <form id="post-form">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Post Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    name="postName"
-                    v-model="updatingData.postName"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Image</label>
-                  <input
-                    type="file"
-                    @change="GetImage"
-                    class="form-control"
-                    id="exampleInput"
-                    aria-describedby="emailHelp"
-                    placeholder=""
-                    name="image"
-                    accept="image/*"
-                  />
-                  <div class="form-group">
-                    <img
-                      class="from-control m-4"
-                      :src="avatar1"
-                      alt="Image"
-                      width="300px"
-                      height="200px"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="exampleFormControl">Description</label>
-                  <textarea
-                    class="form-control"
-                    name="description"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                    v-model="updatingData.description"
-                    required
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  class="btn btn-success"
-                  @click.prevent="update(updatingData)"
-                >
-                  Save Changes
-                </button>
-              </form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Image</label>
+              <input
+                type="file"
+                @change="GetImage"
+                class="form-control"
+                aria-describedby="emailHelp"
+                placeholder=""
+                name="image"
+                accept="image/*"
+              />
+              <div class="form-group">
+                <img
+                  class="from-control m-4"
+                  :src="avatar1"
+                  alt="Image"
+                  width="300px"
+                  height="200px"
+                />
+              </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
+            <div class="form-group">
+              <label for="exampleFormControl">Description</label>
+              <textarea
+                class="form-control"
+                name="description"
+                rows="3"
+                v-model="updatingData.description"
+                required
+              ></textarea>
             </div>
+            <button
+              type="submit"
+              class="btn btn-success"
+              @click.prevent="update(updatingData)"
+            >
+              Save Changes
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
@@ -379,8 +224,12 @@
 </template>
 <script>
 import { Form, HasError, AlertError } from "vform";
+import comment from "./CommentSection.vue";
 export default {
   props: ["user"],
+  components: {
+    comment,
+  },
   data() {
     return {
       posts: [],
@@ -440,7 +289,8 @@ export default {
         .post("/postUpdate/" + this.idPost, this.file)
         .then((response) => {
           $("#Edit_post").modal("hide");
-          this.$swal("Post Updated!!");
+          this.$swal("Post Updated!!", "Exelent Work", "success");
+          this.getPosts();
         })
         .catch((error) => {
           this.error = error.response.data.message;
@@ -455,6 +305,31 @@ export default {
         .catch((error) => {
           this.error = error.response.data.message;
         });
+    },
+    removeIt(post) {
+      console.log(post);
+      this.$swal({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        // Send request to the server
+        if (result.value) {
+          axios
+            .delete("/delpost/" + post.id)
+            .then(() => {
+              this.$swal("Deleted!", "Your file has been deleted.", "success");
+              this.getPosts();
+            })
+            .catch(() => {
+              this.$swal("Failed!", "There was something wronge.", "warning");
+            });
+        }
+      });
     },
   },
 };

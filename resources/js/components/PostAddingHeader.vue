@@ -49,61 +49,54 @@
             </button>
           </div>
           <div class="modal-body">
-            <form id="post-form">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Post Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                name="postName"
+                v-model="newPost.name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Image</label>
+              <input
+                type="file"
+                @change="GetImage"
+                class="form-control"
+                placeholder=""
+                name="image"
+                accept="image/*"
+              />
               <div class="form-group">
-                <label for="exampleInputEmail1">Post Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  name="postName"
-                  v-model="newPost.name"
-                  required
+                <img
+                  class="from-control m-4"
+                  :src="avatar"
+                  alt="Image"
+                  width="300px"
+                  height="200px"
                 />
               </div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Image</label>
-                <input
-                  type="file"
-                  @change="GetImage"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder=""
-                  name="image"
-                  accept="image/*"
-                />
-                <div class="form-group">
-                  <img
-                    class="from-control m-4"
-                    :src="avatar"
-                    alt="Image"
-                    width="300px"
-                    height="200px"
-                  />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="exampleFormControlTextarea1">Description</label>
-                <textarea
-                  class="form-control"
-                  name="description"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
-                  v-model="newPost.description"
-                  required
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                @click.prevent="upload"
-              >
-                Post
-              </button>
-            </form>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Description</label>
+              <textarea
+                class="form-control"
+                name="description"
+                rows="3"
+                v-model="newPost.description"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              @click.prevent="upload"
+            >
+              Post
+            </button>
           </div>
           <div class="modal-footer">
             <button

@@ -27,3 +27,8 @@ Route::post('/postUpload', 'PostController@store');
 Route::get('/posts', 'PostController@index');
 Route::get('/ownposts/{id}', 'PostController@Userindex');
 Route::post('/postUpdate/{id}', 'PostController@Update');
+Route::delete('/delpost/{id}', 'PostController@remove');
+Route::post('/comment/{id}', 'CommentController@store');
+Route::delete('/comment/{id}', 'CommentController@remove');
+Route::post('/commentUp/{id}', 'CommentController@update');
+Route::get('/comment/{id}', 'CommentController@index');
